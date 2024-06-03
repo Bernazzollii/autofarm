@@ -89,5 +89,23 @@
 <script src="/lib/pickerJS/picker.js"></script>
 <script src="/data/lib/pickerJS/picker.js"></script>
 <script src="script.js"></script>
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js';
+
+    // Add Firebase products that you want to use
+    import { getAuth } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js';
+    import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js'
+</script>
+<script type="module">
+    // ...
+
+    // TODO: Replace the following with your app's Firebase project configuration
+    const firebaseConfig = {
+        // ...
+    };
+
+    // Initialize Firebase
+    const app = initializeApp();
+</script>
 
 </html>
