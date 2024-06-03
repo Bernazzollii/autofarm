@@ -1,0 +1,93 @@
+<!-- Complete project details: https://randomnerdtutorials.com/esp32-web-server-websocket-sliders/ -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ESP IOT DASHBOARD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="icon" type="image/png" href="favicon.png"> -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="/lib/pickerJS/picker.css">
+
+</head>
+<header>
+    <div class="logo">
+        <!-- <img src="logo.png" alt="logo"> -->
+    </div>
+    <!-- <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/picker-time/picker.html">Timer</a></li>
+        </ul>
+    </nav> -->
+</header>
+
+<body>
+    <!-- <h2>ESP Web Server</h2>
+    <h1 class="current_time">
+    </h1>
+    <div class="rele-list">
+        <h4>Relay #1 - GPIO 21</h4><label class="switch"><input type="checkbox" onchange="toggleCheckbox(this)" id="1"
+                gpio=21><span class="slider"></span></label>
+        <h4>Relay #2 - GPIO 23</h4><label class="switch"><input type="checkbox" onchange="toggleCheckbox(this)" id="2"
+                gpio=23><span class="slider"></span></label>
+        <h4>Relay #3 - GPIO 25</h4><label class="switch"><input type="checkbox" onchange="toggleCheckbox(this)" id="3"
+                gpio=25><span class="slider"></span></label>
+    </div> -->
+
+    <div class="rele-list">
+        <div class="title">
+            <h2>SLC Project</h2>
+        </div>
+        <h1 class="current_time">
+        </h1>
+        <div class="rele_list__item">
+            %BUTTONPLACEHOLDER%
+        </div>
+    </div>
+
+    <div class="time_picker">
+        <div class="option_type">
+            <div class="option_title">
+                <h3>Desligamento em </h3>
+            </div>
+            <div class="option_time">
+                <div class="option_choice">
+                    <input type="radio" id="minute" name="type_time" value="Minute" checked>
+                    <label for="minute">Minutos</label><br>
+                </div>
+                <div class="option_choice">
+                    <input type="radio" id="hour" name="type_time" value="Hour">
+                    <label for="hour">Horas</label><br>
+                </div>
+
+            </div>
+        </div>
+        <div class="picker_js">
+            <p class="picker_title">Quantidade</p>
+            <input type="number" id="value" class="form-control js-time-picker ">
+            <label class="button_submit">
+                <input class="auto_start" type="checkbox" name="send" id="send" onchange="startRele(this)">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <!-- <div class="picker_js">
+            <input type="text" class="form-control js-time-picker pick2">
+        </div> -->
+
+    </div>
+
+
+
+
+
+</body>
+<script src="/lib/moment/moment.js"></script>
+<script src="/data/lib/moment/moment.js"></script>
+<script src="/lib/pickerJS/picker.js"></script>
+<script src="/data/lib/pickerJS/picker.js"></script>
+<script src="script.js"></script>
+
+</html>
