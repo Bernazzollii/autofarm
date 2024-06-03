@@ -111,18 +111,18 @@
         appId: "1:480128354723:web:81d689b190e7d900837216"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-
-    //Firestore connection
-    const database = getFirestore();
-
-    database.collection("data").onSnapshot((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${doc.data()}`);
-        });
-    });
+    // Get a list of cities from your database
+    async function getCities(db) {
+        const citiesCol = collection(db, 'data');
+        const citySnapshot = await getDocs(citiesCol);
+        console.log(citySnapshot);
+        const cityList = citySnapshot.docs.map(doc => doc.data());
+        console.log(cityList);
+        return cityList;
+    }
 </script>
 
 </html>
