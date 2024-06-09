@@ -1,3 +1,4 @@
+import { getAvailableReles } from "./db.js";
 import { auth, onAuthStateChanged, provider, signInWithPopup, signOut } from "./firebaseSDK.js";
 
 const signInButton = document.getElementById('signInButton');
@@ -20,6 +21,7 @@ const userSignIn = async () => {
 
 const userSignOut = async () => {
     await signOut(auth).then(() => {
+        location.reload();
     }).catch((error) => {
         console.log(error);
     });
@@ -42,8 +44,6 @@ const userSignOut = async () => {
 //     }
 // });
 
-
-
 const UserConected = new Promise((resolve, reject) => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -51,6 +51,7 @@ const UserConected = new Promise((resolve, reject) => {
             message.classList.remove('hide');
             message.textContent = `Hello, ${user.displayName}`;
             signOutButton.classList.remove('hide');
+            getAvailableReles();
             resolve(user);
         } else {
             message.classList.add('hide');

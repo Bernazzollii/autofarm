@@ -78,7 +78,7 @@ async function initConfigs() {
     });
 }
 
-onload = initConfigs;
+export { getAvailableReles, insertAllReles };
 
 
 
