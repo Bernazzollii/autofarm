@@ -63,16 +63,19 @@ function insertAllReles() {
     const dbref = ref(database);
     const data = {
         "reles": {
-            "21": {
+            "16": {
                 "status": 0
             },
-            "22": {
+            "5": {
                 "status": 0
             },
-            "23": {
+            "4": {
                 "status": 0
             },
-            "24": {
+            "0": {
+                "status": 0
+            },
+            "2": {
                 "status": 0
             }
         }
