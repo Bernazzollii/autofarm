@@ -1,11 +1,7 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp, } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-import {
-    collection,
-    getFirestore
-} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
+import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-auth.js";
+import { child, get, getDatabase, ref, remove, set, update } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-database.js";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -20,9 +16,13 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
+const database = getDatabase();
 
-export { auth, collection, getFirestore, onAuthStateChanged, provider, signInWithPopup, signOut };
+
+
+export { app, auth, child, database, get, getDatabase, onAuthStateChanged, provider, ref, remove, set, signInWithPopup, signOut, update };
 
