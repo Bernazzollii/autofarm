@@ -1,6 +1,21 @@
 import { UserConected } from "./auth.js";
 import { child, database, get, ref, set } from "./firebaseSDK.js";
 
+function toggleCheckbox(rele) {
+    console.log("(´༎ຶ۝༎ຶ) -> rele:", rele);
+    const dbref = ref(database);
+    return function () {
+        const data = {
+            "status": this.checked ? 1 : 0
+        };
+        set(child(dbref, `data/slc/reles/${rele}/`), data).then(() => {
+            console.log("Data inserted successfully");
+        }).catch((error) => {
+            console.error(error);
+        });
+    };
+}
+
 function getAvailableReles() {
     const dbref = ref(database);
 
@@ -19,7 +34,7 @@ function getAvailableReles() {
                 label.classList.add("switch");
                 const input = document.createElement("input");
                 input.type = "checkbox";
-                // input.onchange = toggleCheckbox;
+                input.onchange = toggleCheckbox(rele);
                 input.id = rele;
                 input.gpio = 21;
                 if (releStatus) {
