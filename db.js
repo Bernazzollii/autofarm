@@ -93,6 +93,31 @@ async function initConfigs() {
     });
 }
 
+function checkStatusRele() {
+    const dbref = ref(database);
+    get(child(dbref, 'data/slc/')).then((snapshot) => {
+        if (snapshot.exists()) {
+            console.log(snapshot.val());
+            const reles = snapshot.val().reles;
+            for (const rele in reles) {
+                const releStatus = reles[rele].status;
+                console.log(rele, releStatus);
+                const input = document.getElementById(rele);
+                if (releStatus) {
+                    input.checked = true;
+                } else {
+                    input.checked = false;
+                }
+            }
+        }
+    }).catch((error) => {
+        console.error(error);
+    });
+
+}
+
+setInterval(checkStatusRele, 10000);
+
 export { getAvailableReles, insertAllReles };
 
 
