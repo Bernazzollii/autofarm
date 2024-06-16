@@ -23,11 +23,38 @@
 
 <body>
 
-    <div class="rele_list"></div>
+    <div class="container">
+        <div class="card">
+            <div class="title">
+                <h2>Controle de Irrigação</h2>
+            </div>
+            <div class="card_list">
+                <div class="card_content manual">
+                    <div class="title">
+                        <h3>Controle Manual</h3>
+                    </div>
+                    <div class="manual-control">
+                        <div class="rele_list"></div>
+                    </div>
+                </div>
+                <div class="card_content auto">
+                    <div class="title">
+                        <h3>Controle Automático</h3>
+                    </div>
+                    <div class="auto-control">
+                        <div id='calendar'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 <script type="module" src="firebaseSDK.js"></script>
 <script type="module" src="auth.js"></script>
 <script type="module" src="db.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+<script src="lib/calendar/fullcalendar.js"></script>
 
 </html>

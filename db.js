@@ -2,7 +2,6 @@ import { UserConected } from "./auth.js";
 import { child, database, get, ref, set } from "./firebaseSDK.js";
 
 function toggleCheckbox(rele) {
-    console.log("(´༎ຶ۝༎ຶ) -> rele:", rele);
     const dbref = ref(database);
     return function () {
         const data = {
@@ -21,11 +20,9 @@ function getAvailableReles() {
 
     get(child(dbref, 'data/slc/')).then((snapshot) => {
         if (snapshot.exists()) {
-            console.log(snapshot.val());
             const reles = snapshot.val().reles;
             for (const rele in reles) {
                 const releStatus = reles[rele].status;
-                console.log(rele, releStatus);
                 const div = document.createElement("div");
                 div.classList.add("rele");
                 const h4 = document.createElement("h4");
@@ -100,11 +97,9 @@ function checkStatusRele() {
     const dbref = ref(database);
     get(child(dbref, 'data/slc/')).then((snapshot) => {
         if (snapshot.exists()) {
-            console.log(snapshot.val());
             const reles = snapshot.val().reles;
             for (const rele in reles) {
                 const releStatus = reles[rele].status;
-                console.log(rele, releStatus);
                 const input = document.getElementById(rele);
                 if (releStatus) {
                     input.checked = true;
