@@ -203,7 +203,7 @@ input:checked+.submit:before {
 .card_list {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: stretch;
   align-content: flex-start;
@@ -218,11 +218,95 @@ input:checked+.submit:before {
   min-height: 300px;
 }
 
-/* .card_content.manual {
-  font-size: medium;
+.card_content .auto-control {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.card_content h3 {
-  font-size: 1.5rem;
-  margin-bottom: 8px;
+.auto-control #external-events {
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* #external-events {
+  position: fixed;
+  z-index: 2;
+  top: 20px;
+  left: 20px;
+  width: 150px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  background: #eee;
 } */
+
+#external-events .fc-event {
+  cursor: move;
+  margin: 3px 0;
+}
+
+#calendar-container {
+  position: relative;
+  z-index: 1;
+  margin-left: 20px;
+}
+
+#calendar {
+  max-width: 1100px;
+  margin: 20px auto;
+}
+
+.tooltip {
+  position: absolute;
+  will-change: transform;
+  visibility: visible;
+  top: 0px;
+  left: 0px;
+  transform: translate3d(236px, 137px, 0px);
+  background: var(--fc-event-bg-color);
+}
+
+.popper,
+.tooltip {
+  position: absolute;
+  z-index: 9999;
+  background: #FFC107;
+  color: black;
+  width: 150px;
+  border-radius: 3px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  text-align: center;
+}
+
+.tooltip .tooltip-arrow,
+.popper .popper__arrow {
+  border-color: #FFC107;
+}
+
+.popper .popper__arrow,
+.tooltip .tooltip-arrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  position: absolute;
+  margin: 5px;
+}
+
+.tooltip[x-placement^="bottom"] .tooltip-arrow,
+.popper[x-placement^="bottom"] .popper__arrow {
+  border-width: 0 5px 5px 5px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  top: -5px;
+  left: calc(50% - 5px);
+  margin-top: 0;
+  margin-bottom: 0;
+}

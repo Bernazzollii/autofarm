@@ -114,9 +114,41 @@ function checkStatusRele() {
 
 }
 
+function getReleStatus(rele) {
+    const dbref = ref(database);
+    // Return a new promise
+    return new Promise((resolve, reject) => {
+        get(child(dbref, `data/slc/reles/${rele}/`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                // Resolve the promise with the status
+                resolve(snapshot.val().status);
+            } else {
+                // Resolve with null or reject based on your use case if the snapshot doesn't exist
+                resolve(null);
+            }
+        }).catch((error) => {
+            console.error(error);
+            // Reject the promise if there's an error
+            reject(error);
+        });
+    });
+}
+
+function setReleStatus(rele, status) {
+    const dbref = ref(database);
+    const data = {
+        "status": status
+    };
+    set(child(dbref, `data/slc/reles/${rele}/`), data).then(() => {
+        console.log("Data inserted successfully");
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
 setInterval(checkStatusRele, 10000);
 
-export { getAvailableReles, insertAllReles };
+export { getAvailableReles, getReleStatus, insertAllReles, setReleStatus };
 
 
 
