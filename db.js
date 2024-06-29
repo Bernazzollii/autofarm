@@ -26,9 +26,35 @@ function getAvailableReles() {
                 const div = document.createElement("div");
                 div.classList.add("rele");
                 const h4 = document.createElement("h4");
-                h4.textContent = `Relay #${rele[rele.length - 1]} - GPIO ${rele}`;
+                let title = "";
                 const label = document.createElement("label");
                 label.classList.add("switch");
+                const span = document.createElement("span");
+
+                switch (rele) {
+                    case "0":
+                        title = "Horta";
+                        break;
+                    case "4":
+                        title = "Caixa d'água casa";
+                        break;
+                    case "5":
+                        title = "Caixa d'água chiqueiro";
+                        break;
+                    case "16":
+                        title = "Sem uso";
+                        label.classList.add("disabled");
+                        break;
+                    case "17":
+                        title = "Sem uso";
+                        label.classList.add("disabled");
+                        break;
+                    default:
+                        title = "Sem uso";
+                        label.classList.add("disabled");
+                        break;
+                }
+                h4.textContent = `${title} - GPIO ${rele}`;
                 const input = document.createElement("input");
                 input.type = "checkbox";
                 input.onchange = toggleCheckbox(rele);
@@ -37,7 +63,6 @@ function getAvailableReles() {
                 if (releStatus) {
                     input.checked = true;
                 }
-                const span = document.createElement("span");
                 span.classList.add("slider");
                 label.appendChild(input);
                 label.appendChild(span);
