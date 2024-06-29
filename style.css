@@ -206,15 +206,14 @@ input:checked+.submit:before {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: stretch;
-  align-content: flex-start;
 }
 
 .card_content {
-  padding: 20px;
-  margin: 20px;
+  padding: 10px;
+  margin: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  min-width: 400px;
+  min-width: 500px;
   min-height: 300px;
 }
 
@@ -309,4 +308,25 @@ input:checked+.submit:before {
   left: calc(50% - 5px);
   margin-top: 0;
   margin-bottom: 0;
+}
+
+#calendar-container {
+  width: 100%;
+}
+
+
+.fc .fc-toolbar-title {
+  font-size: 18px;
+}
+
+/* .fc .fc-toolbar {
+  display: block;
+}*/
+
+.fc-toolbar-chunk {
+  font-size: 13px;
+}
+
+.fc-toolbar-chunk .fc-toolbar-title {
+  font-size: 14px;
 }
