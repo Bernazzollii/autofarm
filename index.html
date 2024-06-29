@@ -41,8 +41,8 @@
                         <h3>Controle Automático</h3>
                     </div>
                     <div class="auto-control">
-                        <div id='external-events'>
-                            <p>
+                        <!-- <div id='external-events'>
+                            <p class="title">
                                 <strong>Draggable Events</strong>
                             </p>
 
@@ -52,21 +52,7 @@
                             <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
                                 <div class='fc-event-main'>My Event 2</div>
                             </div>
-                            <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                                <div class='fc-event-main'>My Event 3</div>
-                            </div>
-                            <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                                <div class='fc-event-main'>My Event 4</div>
-                            </div>
-                            <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                                <div class='fc-event-main'>My Event 5</div>
-                            </div>
-
-                            <p>
-                                <input type='checkbox' id='drop-remove' />
-                                <label for='drop-remove'>remove after drop</label>
-                            </p>
-                        </div>
+                        </div> -->
 
                         <div id='calendar-container'>
                             <div id='calendar'></div>
@@ -82,8 +68,11 @@
 <script type="module" src="firebaseSDK.js"></script>
 <script type="module" src="auth.js"></script>
 <script type="module" src="db.js"></script>
+<script src='https://unpkg.com/popper.js/dist/umd/popper.min.js'></script>
+<script src='https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
 
+<script src="lib/moment/moment.js"></script>
 <script type="module" src="lib/calendar/fullcalendar.js"></script>
 
 </html>
