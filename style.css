@@ -329,4 +329,48 @@ input:checked+.submit:before {
 
 .fc-toolbar-chunk .fc-toolbar-title {
   font-size: 14px;
+  text-align: center;
+}
+
+#calendar-container {
+  margin-left: 0;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .title h2 {
+    font-size: 24px;
+  }
+
+  .title h3 {
+    font-size: 20px;
+  }
+
+  .card_content .auto-control {
+    flex-direction: column;
+  }
+
+  .card_list {
+    flex-direction: column;
+  }
+
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .card_content {
+    min-width: 380px;
+    padding: 10px;
+  }
+
+  .card_content .auto-control {
+    margin: 10px 0;
+  }
+
+
 }
