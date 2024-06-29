@@ -65,7 +65,7 @@ header {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
 }
@@ -81,10 +81,15 @@ header {
   width: 60px;
   height: 30px;
   margin: 0 20px;
+  cursor: pointer;
 }
 
 .switch input {
   display: none
+}
+
+ .disabled {
+  pointer-events: none;
 }
 
 .slider {
