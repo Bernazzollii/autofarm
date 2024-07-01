@@ -21,6 +21,8 @@ function getAvailableReles() {
     get(child(dbref, 'data/slc/')).then((snapshot) => {
         if (snapshot.exists()) {
             const reles = snapshot.val().reles;
+            let atLeastOneReleTrue = false;
+
             for (const rele in reles) {
                 const releStatus = reles[rele].status;
                 const div = document.createElement("div");
@@ -59,8 +61,15 @@ function getAvailableReles() {
                 input.type = "checkbox";
                 input.onchange = toggleCheckbox(rele);
                 input.id = rele;
-                input.gpio = 21;
+
                 if (releStatus) {
+                    input.checked = true;
+                    atLeastOneReleTrue = true;
+                }
+                if (rele == "16" || rele == "17") {
+                    input.disabled = true;
+                }
+                if (rele == "4" && !atLeastOneReleTrue) {
                     input.checked = true;
                 }
                 span.classList.add("slider");
@@ -122,15 +131,23 @@ function checkStatusRele() {
     const dbref = ref(database);
     get(child(dbref, 'data/slc/')).then((snapshot) => {
         if (snapshot.exists()) {
+            let atLeastOneReleTrue = false;
             const reles = snapshot.val().reles;
             for (const rele in reles) {
                 const releStatus = reles[rele].status;
                 const input = document.getElementById(rele);
                 if (releStatus) {
                     input.checked = true;
+                    atLeastOneReleTrue = true;
                 } else {
                     input.checked = false;
                 }
+            }
+
+            if (!atLeastOneReleTrue) {
+                // If no rele is on, turn on the GPIO 4
+                const input = document.getElementById("4");
+                input.checked = true;
             }
         }
     }).catch((error) => {
@@ -166,12 +183,13 @@ function setReleStatus(rele, status) {
     };
     set(child(dbref, `data/slc/reles/${rele}/`), data).then(() => {
         console.log("Data inserted successfully");
+        checkStatusRele();
     }).catch((error) => {
         console.error(error);
     });
 }
 
-setInterval(checkStatusRele, 10000);
+setInterval(checkStatusRele, 1500);
 
 export { getAvailableReles, getReleStatus, insertAllReles, setReleStatus };
 
