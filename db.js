@@ -43,14 +43,6 @@ function getAvailableReles() {
                     case "5":
                         title = "Caixa d'água chiqueiro";
                         break;
-                    case "16":
-                        title = "Sem uso";
-                        label.classList.add("disabled");
-                        break;
-                    case "17":
-                        title = "Sem uso";
-                        label.classList.add("disabled");
-                        break;
                     default:
                         title = "Sem uso";
                         label.classList.add("disabled");
@@ -66,7 +58,7 @@ function getAvailableReles() {
                     input.checked = true;
                     atLeastOneReleTrue = true;
                 }
-                if (rele == "16" || rele == "17") {
+                if (rele != "0" && rele != "4" && rele != '5') {
                     input.disabled = true;
                 }
                 if (rele == "4" && !atLeastOneReleTrue) {
@@ -148,6 +140,7 @@ function checkStatusRele() {
                 // If no rele is on, turn on the GPIO 4
                 const input = document.getElementById("4");
                 input.checked = true;
+                setReleStatus(input.id, 1);
             }
         }
     }).catch((error) => {
