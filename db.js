@@ -106,6 +106,7 @@ function insertAllReles() {
 
     set(child(dbref, 'data/slc/'), data).then(() => {
         console.log("Data inserted successfully");
+        window.location.reload();
     }).catch((error) => {
         console.error(error);
     });
@@ -123,10 +124,10 @@ function checkStatusRele() {
     const dbref = ref(database);
     get(child(dbref, 'data/slc/')).then((snapshot) => {
         if (snapshot.exists()) {
-            let atLeastOneReleTrue = false;
             const reles = snapshot.val().reles;
             for (const rele in reles) {
                 const releStatus = reles[rele].status;
+                console.log("(´༎ຶ۝༎ຶ) -> releStatus:", releStatus);
                 const input = document.getElementById(rele);
                 if (releStatus) {
                     input.checked = true;
