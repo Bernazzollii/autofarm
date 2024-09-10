@@ -127,7 +127,6 @@ function checkStatusRele() {
             const reles = snapshot.val().reles;
             for (const rele in reles) {
                 const releStatus = reles[rele].status;
-                console.log("(´༎ຶ۝༎ຶ) -> releStatus:", releStatus);
                 const input = document.getElementById(rele);
                 if (releStatus) {
                     input.checked = true;
