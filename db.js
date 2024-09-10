@@ -40,10 +40,10 @@ function getAvailableReles() {
                     case "4":
                         title = "Caixa d'água casa";
                         break;
-                    case "5":
+                    case "16":
                         title = "Caixa d'água chiqueiro";
                         break;
-                    case "14":
+                    case "17":
                         title = "Bomba d'água";
                         label.classList.add("disabled");
                         break;
@@ -61,7 +61,7 @@ function getAvailableReles() {
                 if (releStatus) {
                     input.checked = true;
                 }
-                if (rele == "14") {
+                if (rele == "17") {
                     input.disabled = true;
                 }
                 // if (rele == "4" && !atLeastOneReleTrue) {
@@ -95,10 +95,10 @@ function insertAllReles() {
             "4": {
                 "status": 0
             },
-            "5": {
+            "16": {
                 "status": 0
             },
-            "14": {
+            "17": {
                 "status": 0
             },
         }
@@ -128,6 +128,7 @@ function checkStatusRele() {
             for (const rele in reles) {
                 const releStatus = reles[rele].status;
                 const input = document.getElementById(rele);
+                console.log("(´༎ຶ۝༎ຶ) -> input:", input);
                 if (releStatus) {
                     input.checked = true;
                 } else {
