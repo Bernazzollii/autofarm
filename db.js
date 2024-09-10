@@ -43,6 +43,10 @@ function getAvailableReles() {
                     case "5":
                         title = "Caixa d'água chiqueiro";
                         break;
+                    case "14":
+                        title = "Bomba d'água";
+                        label.classList.add("disabled");
+                        break;
                     default:
                         title = "Sem uso";
                         label.classList.add("disabled");
@@ -56,14 +60,13 @@ function getAvailableReles() {
 
                 if (releStatus) {
                     input.checked = true;
-                    atLeastOneReleTrue = true;
                 }
-                if (rele != "0" && rele != "4" && rele != '5') {
-                    input.disabled = true;
-                }
-                if (rele == "4" && !atLeastOneReleTrue) {
-                    input.checked = true;
-                }
+                // if (rele != "0" && rele != "4" && rele != '5' && rele != '14') {
+                //     input.disabled = true;
+                // }
+                // if (rele == "4" && !atLeastOneReleTrue) {
+                //     input.checked = true;
+                // }
                 span.classList.add("slider");
                 label.appendChild(input);
                 label.appendChild(span);
@@ -92,15 +95,12 @@ function insertAllReles() {
             "4": {
                 "status": 0
             },
-            "16": {
-                "status": 0
-            },
-            "17": {
-                "status": 0
-            },
             "5": {
                 "status": 0
-            }
+            },
+            "14": {
+                "status": 0
+            },
         }
     };
 
@@ -130,18 +130,17 @@ function checkStatusRele() {
                 const input = document.getElementById(rele);
                 if (releStatus) {
                     input.checked = true;
-                    atLeastOneReleTrue = true;
                 } else {
                     input.checked = false;
                 }
             }
 
-            if (!atLeastOneReleTrue) {
-                // If no rele is on, turn on the GPIO 4
-                const input = document.getElementById("4");
-                input.checked = true;
-                setReleStatus(input.id, 1);
-            }
+            // if (!atLeastOneReleTrue) {
+            //     // If no rele is on, turn on the GPIO 4
+            //     const input = document.getElementById("4");
+            //     input.checked = true;
+            //     setReleStatus(input.id, 1);
+            // }
         }
     }).catch((error) => {
         console.error(error);
