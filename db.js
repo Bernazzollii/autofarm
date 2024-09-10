@@ -61,9 +61,9 @@ function getAvailableReles() {
                 if (releStatus) {
                     input.checked = true;
                 }
-                // if (rele != "0" && rele != "4" && rele != '5' && rele != '14') {
-                //     input.disabled = true;
-                // }
+                if (rele == "14") {
+                    input.disabled = true;
+                }
                 // if (rele == "4" && !atLeastOneReleTrue) {
                 //     input.checked = true;
                 // }
