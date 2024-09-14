@@ -128,7 +128,6 @@ function checkStatusRele() {
             for (const rele in reles) {
                 const releStatus = reles[rele].status;
                 const input = document.getElementById(rele);
-                console.log("(´༎ຶ۝༎ຶ) -> input:", input);
                 if (releStatus) {
                     input.checked = true;
                 } else {
