@@ -1,8 +1,13 @@
-import { UserConected } from "./auth.js";
 import { child, database, get, ref, set } from "./firebaseSDK.js";
+import { showToast } from "./toast.js";
+
+let userValidated = false;
+const dbref = ref(database);
 
 function toggleCheckbox(rele) {
-    const dbref = ref(database);
+    if (!userValidated) {
+        return;
+    }
     return function () {
         const data = {
             "status": this.checked ? 1 : 0
@@ -15,10 +20,11 @@ function toggleCheckbox(rele) {
     };
 }
 
-function getAvailableReles() {
-    const dbref = ref(database);
-
-    get(child(dbref, 'data/slc/')).then((snapshot) => {
+async function getAvailableReles() {
+    if (!userValidated) {
+        return;
+    }
+    await get(child(dbref, 'data/slc/')).then((snapshot) => {
         if (snapshot.exists()) {
             const reles = snapshot.val().reles;
             let atLeastOneReleTrue = false;
@@ -86,7 +92,6 @@ function getAvailableReles() {
 }
 
 function insertAllReles() {
-    const dbref = ref(database);
     const data = {
         "reles": {
             "0": {
@@ -103,7 +108,9 @@ function insertAllReles() {
             },
         }
     };
-
+    if (!userValidated) {
+        return;
+    }
     set(child(dbref, 'data/slc/'), data).then(() => {
         console.log("Data inserted successfully");
         window.location.reload();
@@ -112,16 +119,10 @@ function insertAllReles() {
     });
 }
 
-async function initConfigs() {
-    UserConected.then((user) => {
-        getAvailableReles();
-    }).catch((error) => {
-        console.error(error);
-    });
-}
-
 function checkStatusRele() {
-    const dbref = ref(database);
+    if (!userValidated) {
+        return;
+    }
     get(child(dbref, 'data/slc/')).then((snapshot) => {
         if (snapshot.exists()) {
             const reles = snapshot.val().reles;
@@ -145,11 +146,12 @@ function checkStatusRele() {
     }).catch((error) => {
         console.error(error);
     });
-
 }
 
 function getReleStatus(rele) {
-    const dbref = ref(database);
+    if (!userValidated) {
+        return;
+    }
     // Return a new promise
     return new Promise((resolve, reject) => {
         get(child(dbref, `data/slc/reles/${rele}/`)).then((snapshot) => {
@@ -169,10 +171,12 @@ function getReleStatus(rele) {
 }
 
 function setReleStatus(rele, status) {
-    const dbref = ref(database);
     const data = {
         "status": status
     };
+    if (!userValidated) {
+        return;
+    }
     set(child(dbref, `data/slc/reles/${rele}/`), data).then(() => {
         console.log("Data inserted successfully");
         checkStatusRele();
@@ -181,9 +185,21 @@ function setReleStatus(rele, status) {
     });
 }
 
+async function checkUserValidated() {
+    get(child(dbref, 'data/slc/')).then((data) => {
+        userValidated = true;
+        getAvailableReles();
+    }).catch((error) => {
+        console.error(error);
+        userValidated = false;
+
+        showToast("Usuário não tem as permissões necessárias", "danger");
+    });
+}
+
 setInterval(checkStatusRele, 1500);
 
-export { getAvailableReles, getReleStatus, insertAllReles, setReleStatus };
+export { checkUserValidated, getAvailableReles, getReleStatus, insertAllReles, setReleStatus, userValidated };
 
 
 
