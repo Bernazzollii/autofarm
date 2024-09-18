@@ -352,9 +352,6 @@ input:checked+.submit:before {
 /* Mobile */
 
 @media (max-width: 600px) {
-  .container {
-    flex-direction: column;
-  }
 
   .title h2 {
     font-size: 24px;
