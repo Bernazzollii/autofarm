@@ -374,12 +374,24 @@ input:checked+.submit:before {
   }
 
   .card_content {
-    min-width: 380px;
+    min-width: 300px;
     padding: 10px;
   }
 
   .card_content .auto-control {
     margin: 10px 0;
+  }
+
+  .rele {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rele_list {
+    flex-wrap: nowrap;
+    align-items: flex-end;
   }
 
 }
