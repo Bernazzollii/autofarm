@@ -1,4 +1,6 @@
+import { checkUserValidated } from "./db.js";
 import { auth, onAuthStateChanged, provider, signInWithPopup, signOut } from "./firebaseSDK.js";
+import { showToast } from "./toast.js";
 
 const signInButton = document.getElementById('signInButton');
 const signOutButton = document.getElementById('signOutButton');
@@ -14,10 +16,13 @@ async function connectUser() {
                 message.textContent = `Hello, ${user.displayName}`;
                 signOutButton.classList.remove('hide');
                 resolve(user);
+
+                checkUserValidated();
             } else {
                 message.classList.add('hide');
                 signInButton.classList.remove('hide');
                 reject('User not logged');
+                showToast('Usuário não logado, faça login primeiro', 'danger');
             }
         });
     });
@@ -26,10 +31,7 @@ async function connectUser() {
 const userSignIn = async () => {
     await signInWithPopup(auth, provider).then((result) => {
         const user = result.user;
-        // connectUser();
         location.reload();
-        setTimeout(() => {
-        }, 1000);
     }).catch((error) => {
         console.log(error);
         const errorCode = error.code;

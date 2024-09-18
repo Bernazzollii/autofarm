@@ -10,6 +10,8 @@
 body {
   font-family: "Google Sans", sans-serif, system-ui;
   transition: background 0.25s;
+  /* background-color: #212529 !important;
+  color: #fff !important; */
 }
 
 html {
@@ -88,7 +90,7 @@ header {
   display: none
 }
 
- .disabled {
+.disabled {
   cursor: not-allowed;
 }
 
@@ -193,6 +195,7 @@ input:checked+.submit:before {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  /* background-color: #212529 !important; */
 }
 
 .card .title {
@@ -341,6 +344,11 @@ input:checked+.submit:before {
   margin-left: 0;
 }
 
+.toast {
+  position: absolute;
+  bottom: 20px;
+}
+
 /* Mobile */
 
 @media (max-width: 600px) {
@@ -376,6 +384,5 @@ input:checked+.submit:before {
   .card_content .auto-control {
     margin: 10px 0;
   }
-
 
 }

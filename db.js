@@ -1,5 +1,5 @@
-import { UserConected } from "./auth.js";
 import { child, database, get, ref, set } from "./firebaseSDK.js";
+import { showToast } from "./toast.js";
 
 let userValidated = false;
 const dbref = ref(database);
@@ -191,16 +191,11 @@ async function checkUserValidated() {
         getAvailableReles();
     }).catch((error) => {
         console.error(error);
-        alert("Usuário não validado ação não permitida");
         userValidated = false;
+
+        showToast("Usuário não tem as permissões necessárias", "danger");
     });
 }
-
-UserConected.then(() => {
-    checkUserValidated();
-}).catch((error) => {
-    console.error(error);
-});
 
 setInterval(checkStatusRele, 1500);
 
